@@ -619,6 +619,8 @@ class LibcurlConan(ConanFile):
         tc.variables["CURL_DISABLE_RTSP"] = not self.options.with_rtsp
         tc.variables["CURL_DISABLE_CRYPTO_AUTH"] = not self.options.with_crypto_auth
         tc.variables["CURL_DISABLE_VERBOSE_STRINGS"] = not self.options.with_verbose_strings
+        if self.options.with_ssl == "libressl":
+            tc.variables["CURL_DISABLE_SRP"] = True
 
         # Also disables NTLM_WB if set to false
         if not self.options.with_ntlm:
