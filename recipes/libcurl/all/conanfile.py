@@ -693,7 +693,7 @@ class LibcurlConan(ConanFile):
             self.cpp_info.components["curl"].system_libs = ["ws2_32"]
             if self.options.with_ldap:
                 self.cpp_info.components["curl"].system_libs.append("wldap32")
-            if self.options.with_ssl == "schannel" or (self.options.with_ssl == "libressl" and self.settings.os.subsystem != "WindowsStore"):
+            if self.options.with_ssl in ["schannel", "libressl"]:
                 self.cpp_info.components["curl"].system_libs.append("crypt32")
         elif is_apple_os(self):
             self.cpp_info.components["curl"].frameworks.append("CoreFoundation")
